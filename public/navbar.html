@@ -1,0 +1,66 @@
+<!-- Navigation -->
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">Librarian app</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ng-if="user !== undefined && user.role === 'borrower'">
+                    <a href="#/listBooks">List books</a>
+                </li>
+                <li ng-if="user !== undefined && user.role === 'librarian'">
+                    <a href="#/addAuthor">Add author</a>
+                </li>
+                <li ng-if="user !== undefined && user.role === 'librarian'">
+                    <a href="#/addBook">Add book</a>
+                </li>
+                <li ng-if="user !== undefined && user.role === 'librarian'">
+                    <a href="#/addBookInstance">Add book instance</a>
+                </li>
+                <li ng-if="user !== undefined && user.role === 'librarian'">
+                    <a href="#/manageRentals">Manage rentals</a>
+                </li>
+                <li ng-if="user !== undefined">
+                    <a href="#/userSettings">User settings</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" ng-controller="userController">
+                <div ng-if="user === undefined">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" ng-model="loginUser.username" class="form-control" placeholder="Username"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" ng-model="loginUser.password" class="form-control" placeholder="Password" />
+                    </div>
+                    <div class="input-group">
+                        <span ng-show="incorrect" class="input-group-addon" >Incorrect username or password</span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-log-in"></i></span>
+                        <button type="submit" class="btn btn-default" ng-click="login()">Log in</button>
+                    </div>
+                </div>
+                <div ng-if="user !== undefined">
+                    <div class="input-group">
+                        <span class="input-group-addon" >{{user.name}}</span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-log-out"></i></span>
+                        <button type="button" class="btn btn-default" ng-click="logout()">Log out</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- /.navbar-collapse -->
+    <!-- /.container -->
+    </nav>
+
+</div>

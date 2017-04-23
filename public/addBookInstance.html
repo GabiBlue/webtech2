@@ -1,0 +1,38 @@
+<div class="container">
+    <div ng-if="statusCode == 200">
+        <br>
+        <div class="alert alert-success">
+            <p><strong>Success!</strong> New instances have been added successfully.</p>
+        </div>
+    </div>
+    <div ng-if="statusCode == 409">
+        <br>
+        <div class="alert alert-warning">
+            <p><strong>Warning!</strong> Add instance has to be a positive integer.</p>
+        </div>
+    </div>
+    <h1>Add book instance</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Quantity</th>
+                <th>Available</th>
+                <th>Add instance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in books">
+                <td>{{book.author}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.quantity}}</td>
+                <td>{{book.available}}</td>
+                <td>
+                    <input type="number" ng-model="book.addQuantity" required/>
+                    <button ng-click="addBookInstance(book.id, book.addQuantity)">Add</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

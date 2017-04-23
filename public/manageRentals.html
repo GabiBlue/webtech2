@@ -1,0 +1,33 @@
+<div class="container">
+    <div ng-if="statusCode == 200">
+        <br>
+        <div class="alert alert-success">
+            <p><strong>Success!</strong> Book has been lent successfully.</p>
+        </div>
+    </div>
+    <div ng-if="statusCode == 409">
+        <br>
+        <div class="alert alert-warning">
+            <p><strong>Warning!</strong> This book is currently not available.</p>
+        </div>
+    </div>
+    <h1>List requests</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>User</th>
+            <th>Lend book</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="request in requests">
+            <td>{{request.author}}</td>
+            <td>{{request.title}}</td>
+            <td>{{request.user}}</td>
+            <td><button ng-click="lendBook(request)">Lend</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

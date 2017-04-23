@@ -1,0 +1,61 @@
+<div class="container">
+    <div ng-if="statusCode == 200">
+        <br>
+        <div class="alert alert-success">
+            <p><strong>Success!</strong> Book has been requested successfully.</p>
+        </div>
+    </div>
+    <h1>List books</h1>
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="authorField">Author</label>
+            <select id="authorField" class="form-control" ng-model="author" ng-options="author.name for author in authors"></select>
+        </div>
+        <div class="form-group">
+            <label for="genreField">Genre</label>
+            <select id="genreField" class="form-control" ng-model="genre" ng-options="genre for genre in genres"></select>
+        </div>
+        <div class="form-group">
+            <label for="availableField">Show only available books</label>
+            <input type="checkbox" id="availableField" ng-model="available"></input>
+        </div>
+        <div class="form-group">
+            <button type="button" ng-click="reset()" class="btn-default btn-md">Reset</button>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th ng-click="orderByAuthor()">Author
+                        <span class="glyphicon glyphicon-triangle-bottom" ng-show="orderBy == '+author'"></span>
+                        <span class="glyphicon glyphicon-triangle-top" ng-show="orderBy == '-author'"></span>
+                    </th>
+                    <th ng-click="orderByTitle()">Title
+                        <span class="glyphicon glyphicon-triangle-bottom" ng-show="orderBy == '+title'"></span>
+                        <span class="glyphicon glyphicon-triangle-top" ng-show="orderBy == '-title'"></span>
+                    </th>
+                    <th ng-click="orderByGenre()">Genre
+                        <span class="glyphicon glyphicon-triangle-bottom" ng-show="orderBy == '+genre'"></span>
+                        <span class="glyphicon glyphicon-triangle-top" ng-show="orderBy == '-genre'"></span>
+                    </th>
+                    <th>Request</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books | orderBy: orderBy | filter: author.name | filter: genre | filter: availableFilter('available', 0)">
+                    <td>{{book.author}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.genre}}</td>
+                    <td>
+                        <span ng-show="book.requested === 'requested'">Requested</span>
+                        <span ng-show="book.available === 0">Not available</span>
+                        <button ng-show="book.requested === undefined && book.available !== 0" ng-click="requestBook(book.id)">Request book</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
