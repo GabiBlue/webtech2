@@ -7,6 +7,12 @@
                     <p><strong>Success!</strong> Author has been added successfully.</p>
                 </div>
             </div>
+            <div ng-if="statusCode == 403">
+                <br>
+                <div class="alert alert-warning">
+                    <p><strong>Warning!</strong> You don't have permission to add new author.</p>
+                </div>
+            </div>
             <h1>Add a new author</h1>
             <form ng-submit="addAuthor()">
                 <div class="form-group">

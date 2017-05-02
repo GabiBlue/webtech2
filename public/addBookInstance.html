@@ -5,6 +5,12 @@
             <p><strong>Success!</strong> New instances have been added successfully.</p>
         </div>
     </div>
+    <div ng-if="statusCode == 403">
+        <br>
+        <div class="alert alert-warning">
+            <p><strong>Warning!</strong> You don't have permission to add new book instance.</p>
+        </div>
+    </div>
     <div ng-if="statusCode == 409">
         <br>
         <div class="alert alert-warning">

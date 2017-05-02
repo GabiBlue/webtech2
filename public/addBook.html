@@ -7,6 +7,12 @@
                     <p><strong>Success!</strong> Book has been added successfully.</p>
                 </div>
             </div>
+            <div ng-if="statusCode == 403">
+                <br>
+                <div class="alert alert-warning">
+                    <p><strong>Warning!</strong> You don't have permission to add new book.</p>
+                </div>
+            </div>
             <h1>Add a new book</h1>
             <form ng-submit="addBook()">
                 <div class="form-group">

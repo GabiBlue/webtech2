@@ -66,6 +66,10 @@ app.post("/userSettings", function(req, res) {
 });
 
 app.post("/addAuthor", function(req, res) {
+    if (user === undefined || user.role !== "librarian") {
+        res.status(403).end();
+        return;
+    }
     var authors = JSON.parse(fs.readFileSync(__dirname + "/authors.json", "utf8"));
     for (var i = 0; i < authors.length; i++) {
         if (authors[i].name === req.body.name) {
@@ -91,6 +95,10 @@ app.get("/genres", function(req, res) {
 });
 
 app.post("/addBook", function(req, res) {
+    if (user === undefined || user.role !== "librarian") {
+        res.status(403).end();
+        return;
+    }
     var books = JSON.parse(fs.readFileSync(__dirname + "/books.json", "utf8"));
     for (var i = 0; i < books.length; i++) {
         if (books[i].author === req.body.author.name && books[i].title === req.body.title) {
@@ -106,6 +114,10 @@ app.post("/addBook", function(req, res) {
 });
 
 app.post('/addBookInstance/:bookID/:quantity', function (req, res) {
+    if (user === undefined || user.role !== "librarian") {
+        res.status(403).end();
+        return;
+    }
     var bookID = parseInt(req.params.bookID);
     var quantity = parseInt(req.params.quantity);
     if (isNaN(quantity) || quantity < 0) {
