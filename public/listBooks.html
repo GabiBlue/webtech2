@@ -21,7 +21,7 @@
             <input type="checkbox" id="availableField" ng-model="available"></input>
         </div>
         <div class="form-group">
-            <button type="button" ng-click="reset()" class="btn-default btn-md">Reset</button>
+            <button type="button" ng-click="reset()" class="btn btn-default btn-md">Reset</button>
         </div>
     </form>
 
@@ -52,7 +52,7 @@
                     <td>
                         <span ng-show="book.requested === 'requested'">Requested</span>
                         <span ng-show="book.available === 0">Not available</span>
-                        <button ng-show="book.requested === undefined && book.available !== 0" ng-click="requestBook(book.id)">Request book</button>
+                        <button ng-show="book.requested === undefined && book.available !== 0" ng-click="requestBook(book.id)" class="btn btn-default">Request book</button>
                     </td>
                 </tr>
             </tbody>
